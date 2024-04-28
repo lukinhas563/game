@@ -1,6 +1,6 @@
 import Player from "./Player";
 
-export default class VirtualGuy extends Player {
+export default class PinkMan extends Player {
   constructor(scene: Phaser.Scene) {
     super(scene);
   }
@@ -8,8 +8,8 @@ export default class VirtualGuy extends Player {
   loadSprites(): void {
     // Idle
     this.scene.load.spritesheet(
-      "virtualGuy_idle",
-      "/assets/character/virtualGuy/Idle (32x32).png",
+      "pinkMan_idle",
+      "/assets/character/pinkMan/Idle (32x32).png",
       {
         frameWidth: 32,
         frameHeight: 32,
@@ -18,8 +18,8 @@ export default class VirtualGuy extends Player {
 
     // Run
     this.scene.load.spritesheet(
-      "virtualGuy_run",
-      "/assets/character/virtualGuy/Run (32x32).png",
+      "pinkMan_run",
+      "/assets/character/pinkMan/Run (32x32).png",
       {
         frameWidth: 32,
         frameHeight: 32,
@@ -28,8 +28,8 @@ export default class VirtualGuy extends Player {
 
     // Jump
     this.scene.load.spritesheet(
-      "virtualGuy_jump",
-      "/assets/character/virtualGuy/Jump (32x32).png",
+      "pinkMan_jump",
+      "/assets/character/pinkMan/Jump (32x32).png",
       {
         frameWidth: 32,
         frameHeight: 32,
@@ -38,8 +38,8 @@ export default class VirtualGuy extends Player {
 
     // Fall
     this.scene.load.spritesheet(
-      "virtualGuy_fall",
-      "/assets/character/virtualGuy/Fall (32x32).png",
+      "pinkMan_fall",
+      "/assets/character/pinkMan/Fall (32x32).png",
       {
         frameWidth: 32,
         frameHeight: 32,
@@ -49,7 +49,7 @@ export default class VirtualGuy extends Player {
 
   createPlayer(): void {
     this.sprite = this.scene.physics.add
-      .sprite(200, 400, "virtualGuy_idle")
+      .sprite(200, 400, "pinkMan_idle")
       .setSize(22, 32);
 
     this.createAnimations();
@@ -59,7 +59,7 @@ export default class VirtualGuy extends Player {
     // Idle
     this.scene.anims.create({
       key: "idle",
-      frames: this.scene.anims.generateFrameNames("virtualGuy_idle", {
+      frames: this.scene.anims.generateFrameNames("pinkMan_idle", {
         start: 0,
         end: 10,
       }),
@@ -71,7 +71,7 @@ export default class VirtualGuy extends Player {
     // Run
     this.scene.anims.create({
       key: "run",
-      frames: this.scene.anims.generateFrameNames("virtualGuy_run", {
+      frames: this.scene.anims.generateFrameNames("pinkMan_run", {
         start: 0,
         end: 11,
       }),
@@ -82,7 +82,7 @@ export default class VirtualGuy extends Player {
     // Jump
     this.scene.anims.create({
       key: "jump",
-      frames: this.scene.anims.generateFrameNames("virtualGuy_jump", {
+      frames: this.scene.anims.generateFrameNames("pinkMan_jump", {
         start: 0,
         end: 0,
       }),
@@ -91,7 +91,7 @@ export default class VirtualGuy extends Player {
     // Fall
     this.scene.anims.create({
       key: "fall",
-      frames: this.scene.anims.generateFrameNames("virtualGuy_fall", {
+      frames: this.scene.anims.generateFrameNames("pinkMan_fall", {
         start: 0,
         end: 0,
       }),

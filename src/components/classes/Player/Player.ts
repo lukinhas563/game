@@ -1,15 +1,16 @@
-export default abstract class Player {
-  public isJump: boolean = false;
-  protected health = 100;
-  abstract sprite?: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+export default class Player {
+  constructor(
+    protected scene: Phaser.Scene,
+    protected health = 100,
+    public isJump = false,
+    public sprite?: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody
+  ) {}
 
-  constructor(protected scene: Phaser.Scene) {}
+  loadSprites(): void {}
 
-  abstract loadSprites(): void;
+  createPlayer(): void {}
 
-  abstract createPlayer(): void;
-
-  abstract createAnimations(): void;
+  createAnimations(): void {}
 
   loseHealth(attack: number) {
     this.health -= attack;

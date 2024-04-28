@@ -11,9 +11,9 @@ export default abstract class Control {
   constructor(
     protected scene: Phaser.Scene,
     protected player: Player,
-    protected defaultVelocity = 200,
-    protected defaultJump = 350,
-    protected keys?: Keys
+    protected keys?: Keys,
+    private defaultVelocity = 200,
+    private defaultJump = 350
   ) {}
 
   abstract createControls(): void;
@@ -32,6 +32,10 @@ export default abstract class Control {
     if (this.keys.upKey.isDown && !this.player.isJump) {
       this.jump();
       this.player.isJump = true;
+    }
+
+    if (this.player.sprite.body.velocity.y > 0) {
+      this.player.sprite.anims.play("fall", true);
     }
 
     if (this.player.sprite.body.onFloor()) {
@@ -75,10 +79,6 @@ export default abstract class Control {
 
     this.player.sprite.setVelocityY(-this.defaultJump);
 
-    if (this.player.sprite.body.velocity.y < 0) {
-      this.player.sprite.anims.play("jump", true);
-    } else {
-      this.player.sprite.anims.play("fall", true);
-    }
+    this.player.sprite.anims.play("jump", true);
   }
 }
