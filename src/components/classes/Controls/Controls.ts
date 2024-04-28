@@ -11,7 +11,7 @@ export default abstract class Control {
   constructor(
     protected scene: Phaser.Scene,
     protected player: Player,
-    protected keys?: Keys,
+    public keys?: Keys,
     private defaultVelocity = 200,
     private defaultJump = 350
   ) {}
