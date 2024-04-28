@@ -1,24 +1,37 @@
-import Phaser from 'phaser';
+import Phaser from "phaser";
+import GrassMap from "../components/classes/Map/GrassMap";
+import VirtualGuy from "../components/classes/Player/VirtualGuy";
+import Keyboard from "../components/classes/Controls/Keyboard";
 
 export default class Demo extends Phaser.Scene {
+  map = new GrassMap(this);
+  player = new VirtualGuy(this);
+  control = new Keyboard(this, this.player);
+
   constructor() {
-    super('GameScene');
+    super("GameScene");
   }
 
   preload() {
-    this.load.image('logo', 'assets/phaser3-logo.png');
+    this.map.loadMap();
+
+    this.player.loadSprites();
   }
 
   create() {
-    const logo = this.add.image(400, 70, 'logo');
+    this.map.createMap();
 
-    this.tweens.add({
-      targets: logo,
-      y: 350,
-      duration: 1500,
-      ease: 'Sine.inOut',
-      yoyo: true,
-      repeat: -1
-    });
+    this.player.createPlayer();
+
+    this.control.createControls();
+
+    // Colliders
+    if (this.player.sprite && this.map.terrain) {
+      this.physics.add.collider(this.player.sprite, this.map.terrain);
+    }
+  }
+
+  update(time: number, delta: number): void {
+    this.control.configControls();
   }
 }
